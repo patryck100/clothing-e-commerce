@@ -1,8 +1,18 @@
 import React from "react";
+
+import Directory from "../../components/directory/directory.component";
 import './homepage.styles.scss';
-import App from "./App";
+
 
 const HomePage = () => (
+
+    <div className="homepage">
+        <Directory />
+    </div>
+
+
+    /* //instead of doing like this, it is easier to divide into components
+        // as shown above
   <div className="homepage">
     <div className="directory-menu">
       <div className="menu-item">
@@ -48,7 +58,7 @@ const HomePage = () => (
         </div>
       </div>
     </div>
-  </div>
-);
+  </div> */
+); 
 
 export default HomePage;
