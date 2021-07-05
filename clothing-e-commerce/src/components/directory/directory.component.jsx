@@ -49,9 +49,13 @@ class Directory extends React.Component {
         /*maping through the sections by distructuring the section into
          * title, imageUrl and id. Then using id as key 
          */
-      <div className="directory-menu"> 
-        {this.state.sections.map(({ title, imageUrl, id, size }) => (
-          <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
+        /* can also be done like
+        {this.state.sections.map(({id, ...otherSectionProps }) => (
+          <MenuItem key={id} {...otherSectionProps}/>
+        */
+      <div className="directory-menu">
+        {this.state.sections.map(({ title, imageUrl, id, size, linkUrl }) => (
+          <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} linkUrl={linkUrl}/>
         ))}
       </div>
     );

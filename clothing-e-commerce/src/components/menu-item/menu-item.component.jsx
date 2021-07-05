@@ -1,11 +1,16 @@
 import React from "react";
+//function that takes a component as argument and returns a modified component
+import { withRouter } from "react-router-dom"; //by using it, we will have access to history
+
 import './menu-item.styles.scss';
 
-const MenuItem = ({title, imageUrl, size}) => ( //{title} is the same as writing prop.title
+const MenuItem = ({title, imageUrl, size, history, linkUrl, match}) => ( //{title} is the same as writing prop.title
 
     //if the prop "size" exist, use it
     //toUpperCase() transform the text in capital letter
-  <div className={`${size} menu-item`}> 
+  <div 
+  className={`${size} menu-item`} 
+  onClick={() => history.push(`${match.url}${linkUrl}`)}> 
   
     <div className='background-image' 
     style={{
@@ -21,4 +26,4 @@ const MenuItem = ({title, imageUrl, size}) => ( //{title} is the same as writing
 
 );
 
-export default MenuItem;
+export default withRouter(MenuItem);

@@ -6,6 +6,7 @@ import './homepage.styles.scss';
 
 const HomePage = () => (
 
+    //calling the component "Directory"
     <div className="homepage">
         <Directory />
     </div>
