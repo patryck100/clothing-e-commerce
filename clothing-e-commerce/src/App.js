@@ -4,6 +4,7 @@ import "./App.css";
 
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
+import Header from "./components/header/header.component";
 
 
 function App() {
@@ -12,7 +13,9 @@ function App() {
     //the same as written in the "path" in order to render the component
     //Switch allows when the path in Route matches, it only render the component in that route
     //Swtich helps to render only what we want
+    //by placing the Header outside the Switch, it will always be displayed and rendered
     <div className="App">
+      <Header/>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact={false} path="/shop" component={ShopPage} />
