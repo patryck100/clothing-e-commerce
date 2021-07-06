@@ -35,9 +35,7 @@ class App extends React.Component {
               ...snapShot.data(),
             },
           });
-          
-          console.log(this.state);
-          
+
         });
         
       } else { //set state of the current user to null again
