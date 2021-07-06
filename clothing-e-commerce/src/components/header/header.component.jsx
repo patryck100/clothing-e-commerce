@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux'; //let us modify our component to use redux
 import { auth } from "../../firebase/firebase.utils";
 
 //Syntax for importing svg image {ReactComponent as blabla}
@@ -33,4 +34,9 @@ const Header = ({ currentUser }) => (
   </div>
 );
 
-export default Header;
+//state.user.currentUser === rooot-reducer.user.currentUser
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
+
+export default connect(mapStateToProps)(Header);
