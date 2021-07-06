@@ -15,6 +15,34 @@ const config = {
     measurementId: "G-0NSZD119XH"
   };
 
+//Check if the user exist or create a new one in the firebase
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if(!userAuth) return; //if the user doesn't exist, do nothing
+
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+
+  const snapShot = await userRef.get(); //it returns the document including a property "exists" to say if it exist or not
+
+  if (!snapShot.exists) { //if it doesn't exist, create a new user...
+    const { displayName, email } = userAuth; //properties that we want to store from the userAuth
+    const createdAt = new Date(); //current date and time it was created
+
+    try { //setting a new user
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData
+      })
+    } catch (error) {
+      console.log("error creating user", error.message);
+    }
+  }
+
+  return userRef;
+
+}
+
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();
