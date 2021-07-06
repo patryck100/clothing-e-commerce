@@ -8,5 +8,5 @@ This is a React project to represent a full e-commerce shopping
 * The application fetches data using promise object
 
 
-The application is not complete yet, but it will use Stripe API to allow payments (only for testing, this
-project is for study propose only) among other functionalities.
+The application is not complete yet. A shop cart functionality will be added to allow user to save items and pay through Stripe API (this
+project is for study propose only and won't allow real payments) among other functionalities.
