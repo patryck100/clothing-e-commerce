@@ -53,7 +53,6 @@ class App extends React.Component {
       //by placing the Header outside the Switch, it will always be displayed and rendered
       <div className="App">
         <Header />
-        {/* pass in the current state of the user */}
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact={false} path="/shop" component={ShopPage} />
@@ -78,6 +77,7 @@ const mapStateToProps = ({ user }) => ({
   currentUser: user.currentUser,
 });
 
+//dispatch is just a way to inform redux that this is an action obj to be sent to every reducer
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
