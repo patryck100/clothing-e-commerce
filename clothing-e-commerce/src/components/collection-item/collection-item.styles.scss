@@ -4,6 +4,7 @@
   flex-direction: column;
   height: 350px;
   align-items: center;
+  position: relative;
 
   .image {
     width: 100%;
@@ -11,6 +12,26 @@
     background-size: cover;
     background-position: center;
     margin-bottom: 5px;
+  }
+
+  .custom-button {
+    width: 80%;
+    opacity: 0.7;
+    position: absolute; //always at the bottom
+    top: 255px;
+    display: none; //by default the button should be hidden
+  }
+
+  //adds the hover feature in the collection of images
+  &:hover {
+    .image {
+      opacity: 0.8;
+    }
+    //button unhidden 85% in display flex
+    .custom-button{
+      opacity: 0.85;
+      display: flex;
+    }
   }
 
   .collection-footer {
