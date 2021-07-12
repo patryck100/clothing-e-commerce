@@ -10,6 +10,8 @@ import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
+import {selectCurrentUser} from './redux/user/user.selectors';
+import {createStructuredSelector} from 'reselect';
 
 class App extends React.Component {
   //use it to avoid memory leaks of authentication. Set authentication to null
@@ -73,8 +75,8 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
+const mapStateToProps = createStructuredSelector ({
+  currentUser: selectCurrentUser
 });
 
 //dispatch is just a way to inform redux that this is an action obj to be sent to every reducer

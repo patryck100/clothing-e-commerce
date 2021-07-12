@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux"; //let us modify our component to use redux
+import { createStructuredSelector } from "reselect";
+
 import { auth } from "../../firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+import { selectCartHidden } from "../../redux/cart/cart.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors.js";
 
 //Syntax for importing svg image {ReactComponent as blabla}
 import { ReactComponent as Logo } from "../../assets/crown.svg";
@@ -44,9 +48,10 @@ const Header = ({ currentUser, hidden }) => (
 );
 
 //state.user.currentUser === rooot-reducer.user.currentUser
-const mapStateToProps = ({user: {currentUser}, cart: {hidden}}) => ({
-  currentUser,
-  hidden
+//createdStructuredSelector will match the states authomatically
+const mapStateToProps = createStructuredSelector ({ //state or {user: {currentUser}, cart: {hidden}}
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden
 });
 
 export default connect(mapStateToProps)(Header);
