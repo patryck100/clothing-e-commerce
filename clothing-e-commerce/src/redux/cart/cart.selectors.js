@@ -1,7 +1,7 @@
 /*
  *Selectors can compute derived data, allowing Redux to store the minimal possible state.
  *Selectors are efficient. A selector is not recomputed unless one of its arguments changes.
- *Selectors are composable. They can be used as input to other selectors. 
+ *Selectors are composable. They can be used as input to other selectors.
  */
 /*This is a Memoization technic to avoid that components that are making use of the "selectCart" 
 are re-rendered every time the state changes. Basically it sees that the state for the cart didn't change so it
@@ -18,8 +18,8 @@ export const selectCartItems = createSelector(
 );
 
 export const selectCartHidden = createSelector(
-    [selectCart],
-    cart => cart.hidden
+  [selectCart],
+  (cart) => cart.hidden
 );
 
 export const selectCartItemsCount = createSelector(
@@ -31,4 +31,13 @@ export const selectCartItemsCount = createSelector(
         accumulatedQuantity + cartItem.quantity,
       0
     )
+);
+
+//calculate total price of the cart
+export const selectCartTotal = createSelector([selectCartItems], (cartItems) =>
+  cartItems.reduce(
+    (accumulatedQuantity, cartItem) =>
+      accumulatedQuantity + cartItem.quantity * cartItem.price,
+    0
+  )
 );
