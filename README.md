@@ -1,4 +1,4 @@
-This is a React project to represent a full e-commerce clothing shopping. The application displays a collection of clothes divided by category that allows the user to preview the first 4 items of each category. The user can add or remove items to the cart, sign in and sign out, and pay for the items in the checkout page (using a test card provided in the application). 
+This is a React project to represent a full e-commerce clothing shopping. The application displays a collection of clothes divided by category that allows the user to preview the first 4 items of each category. The user can add or remove items to the cart, sign in and sign out, and pay for the items on the checkout page (using a test card provided in the application). 
 
 User authentication
 * The application uses google firebase to authenticate and store user data
