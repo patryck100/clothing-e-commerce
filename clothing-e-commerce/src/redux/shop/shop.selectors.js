@@ -18,6 +18,11 @@ export const selectCollections = createSelector(
   (shop) => shop.collections
 );
 
+export const selectCollectionsForPreview = createSelector(
+    [selectCollections],
+    //get the values from the object in an specific key
+    collections => Object.keys(collections).map(key => collections[key]) 
+);
 
 /*By wrapping this function with memoize, we're saying that whenever this function 
 gets called and receives collectionUrlParam, I want to memoize the return of this 
@@ -32,3 +37,5 @@ export const selectCollection = memoize((collectionUrlParam) =>
     )*/
   )
 );
+
+
