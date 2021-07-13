@@ -12,7 +12,7 @@ import "./collection-preview.styles.scss";
 //by using filter, it hides any other ids which are higher than 4 (line 10)
 const CollectionPreview = ({ title, items,history }) => (
   <div className="collection-preview">
-    <h1 className="title" onClick={() => {
+    <h1 className="title" onClick={() => { //when clickOn the title, it goes to the link
       history.push(`/shop/${title.toLowerCase()}`);}}> {title.toUpperCase()}</h1>
     <div className="preview">
       {items
