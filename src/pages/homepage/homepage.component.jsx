@@ -1,15 +1,15 @@
 import React from "react";
 
 import Directory from "../../components/directory/directory.component";
-import './homepage.styles.scss';
+import { HomePageContainer } from "./homepage.styles";
 
 
 const HomePage = () => (
 
     //calling the component "Directory"
-    <div className="homepage">
+    <HomePageContainer >
         <Directory />
-    </div>
+    </HomePageContainer>
 
 
     /* //instead of doing like this, it is easier to divide into components
