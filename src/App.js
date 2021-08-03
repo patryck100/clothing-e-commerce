@@ -10,10 +10,11 @@ import Header from "./components/header/header.component";
 import CheckoutPage from "./pages/checkout/checkout.component";
 
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument /*, addCollectionAndDocuments */} from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
 import {selectCurrentUser} from './redux/user/user.selectors';
 import {createStructuredSelector} from 'reselect';
+//import {selectCollectionsForPreview} from './redux/shop/shop.selectors';
 
 class App extends React.Component {
   //use it to avoid memory leaks of authentication. Set authentication to null
@@ -21,7 +22,7 @@ class App extends React.Component {
 
   //when a user log in, the state will change to the name of the user
   componentDidMount() {
-    const { setCurrentUser } = this.props;
+    const { setCurrentUser /*, collectionsArray*/ } = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -39,6 +40,11 @@ class App extends React.Component {
       } else {
         //set state of the current user to null again
         setCurrentUser(userAuth);
+
+        //This was a piece of code to add the data collection from the app to the firebase
+        /*/the collectionsArray will return an array of objects with only the values described (title and items)
+        addCollectionAndDocuments('collections', collectionsArray.map(({title, items}) => ({title, items})));
+        */
       }
     });
   }
@@ -79,7 +85,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector ({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
+  //collectionsArray: selectCollectionsForPreview
 });
 
 //dispatch is just a way to inform redux that this is an action obj to be sent to every reducer

@@ -19,9 +19,10 @@ export const selectCollections = createSelector(
 );
 
 export const selectCollectionsForPreview = createSelector(
-    [selectCollections],
-    //get the values from the object in an specific key
-    collections => Object.keys(collections).map(key => collections[key]) 
+  [selectCollections],
+  //get the values from the object in an specific key
+  (collections) => //handle error of fetching data by render the items if exist, otherwise render null value 
+    collections ? Object.keys(collections).map((key) => collections[key]) : []
 );
 
 /*By wrapping this function with memoize, we're saying that whenever this function 
@@ -30,12 +31,11 @@ function (in this case we return a selector). If this function gets called again
 the same collectionUrlParam, don't rerun this function because we'll return the same 
 value as last time, which we've memoized so just return the selector that's been stored. */
 export const selectCollection = memoize((collectionUrlParam) =>
-  createSelector([selectCollections], (collections) =>
-    collections[collectionUrlParam]    
-  /*collections.find( //find collection.id matching the url parameter from the collection_id_map **removed to increase performance, find() can get slow if the data is too big
+  createSelector(
+    [selectCollections], //handle error of fetching data by render the items if exist, otherwise render null value 
+    (collections) => (collections ? collections[collectionUrlParam] : null)
+    /*collections.find( //find collection.id matching the url parameter from the collection_id_map **removed to increase performance, find() can get slow if the data is too big
       (collection) => collection.id === COLLECTION_ID_MAP[collectionUrlParam]
     )*/
   )
 );
-
-
