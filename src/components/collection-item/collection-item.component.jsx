@@ -32,7 +32,6 @@ const CollectiomItem = ({ item, addItem }) => {
         }
         inverted
       >
-        {" "}
         Add to cart
       </AddButton>
     </CollectionItemContainer>
